@@ -1,0 +1,44 @@
+<ion-content>
+  <!--Duck walking across the screen  -->
+  test
+
+  <!-- Time line -->
+  <ngx-timeline
+    [events]="timeLine"
+    [reverseOrder]="true"
+    [changeSide]="timeLineOptions.side"
+    [dateInstantCustomTemplate]="dateInstantCustomTemplate"
+  ></ngx-timeline>
+  <ng-template #dateInstantCustomTemplate let-item="item">
+    <!-- <span> {{item | json}} </span> -->
+  </ng-template>
+
+  <!-- Create time line -->
+  <ion-grid class="ion-no-padding">
+    <ion-row *ngFor="let event of timeLine">
+      <ion-col size="6" style="border-style: dashed; border-width: 0 2px 0 0">
+        <ion-card>
+          <ion-card-subtitle>{{ event.timestamp }}</ion-card-subtitle>
+          <ion-card-title>{{ event.title }}</ion-card-title>
+          <ion-card-content> {{ event.description }} </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-subtitle>{{ event.timestamp }}</ion-card-subtitle>
+          <ion-card-title>{{ event.title }}</ion-card-title>
+          <ion-card-content> {{ event.description }} </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-card *ngFor="let event of timeLine">
+      <div class="dot"></div>
+      <div>
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.timestamp }}</p>
+      </div>
+    </ion-card>
+  </ion-list>
+</ion-content>

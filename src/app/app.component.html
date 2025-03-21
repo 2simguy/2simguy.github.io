@@ -1,18 +1,27 @@
 <ion-app>
+  <!-- Too bar with links to my profiles -->
   <ion-toolbar>
-    <ion-title>My Profile</ion-title>
-    <ion-button slot="end" fill="none">
+    <ion-title>Guy Simmons</ion-title>
+    <ion-chip slot="end">
+      <ion-icon name="location-outline"></ion-icon>
+      <ion-label>Table View, Cape Town</ion-label>
+    </ion-chip>
+    <ion-button slot="end" fill="none" href="tel:0845006678">
       <ion-icon slot="icon-only" name="call-outline"></ion-icon>
     </ion-button>
-    <ion-button slot="end" fill="none">
+    <ion-button slot="end" fill="none" href="mailto:simmonsguy10@gmail.com">
       <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
     </ion-button>
-    <ion-button slot="end" fill="none">
+    <ion-button slot="end" fill="none" href="https://github.com/2simguy">
       <ion-icon slot="icon-only" name="logo-github"></ion-icon>
     </ion-button>
-    <ion-button slot="end" fill="none">
+    <ion-button slot="end" fill="none" href="https://www.linkedin.com/in/guy-t-simmons">
       <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
     </ion-button>
   </ion-toolbar>
-  <ion-router-outlet></ion-router-outlet>
+
+  <!-- Router outlet for the pages -->
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
 </ion-app>
