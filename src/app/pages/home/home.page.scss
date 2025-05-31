@@ -1,1 +1,102 @@
+// .duck {
+//   //   position: absolute;
+//   //   top: 50%;
+//   //   left: -50px;
+//   width: 20px;
+//   height: 20px;
+//   background: yellow;
+//   border-radius: 50%;
+//   animation: waddle 5s linear infinite;
+// }
 
+// .duck::after {
+//   content: "";
+//   position: absolute;
+//   width: 10px;
+//   height: 10px;
+//   background: orange;
+//   bottom: -5px;
+//   left: 5px;
+//   transform: rotate(45deg);
+// }
+
+// @keyframes waddle {
+//   0% {
+//     transform: translateX(0) translateY(0);
+//   }
+//   25% {
+//     transform: translateX(25vw) translateY(2px);
+//   }
+//   50% {
+//     transform: translateX(50vw) translateY(0);
+//   }
+//   75% {
+//     transform: translateX(75vw) translateY(2px);
+//   }
+//   100% {
+//     transform: translateX(100vw) translateY(0);
+//   }
+// }
+
+// .duck {
+//   //   position: absolute;
+//   //   top: 60%;
+//   //   left: -64px;
+//   width: 64px;
+//   height: 64px;
+//   background-image: url("/duck2.png"); /* sample 3-frame sprite strip */
+//   background-repeat: no-repeat;
+//   animation:
+//     walkCycle 0.6s steps(3) infinite,
+//     moveRight 5s linear infinite;
+// }
+
+// @keyframes walkCycle {
+//   from {
+//     background-position: 0 0;
+//   }
+//   to {
+//     background-position: -192px 0;
+//   } /* 64px * 3 frames */
+// }
+
+// @keyframes moveRight {
+//   0% {
+//     transform: translateX(0);
+//   }
+//   100% {
+//     transform: translateX(110vw);
+//   }
+// }
+
+.duck {
+  position: absolute;
+  //   top: 60%;
+  left: -96px; /* slightly more than one frame width */
+  width: 96px; /* width of one frame */
+  height: 96px;
+  background-image: url("/duck2.png");
+  background-repeat: no-repeat;
+  background-size: 288px 96px; /* total width of sprite strip (96px * 3 frames) */
+  animation:
+    walkCycle 0.6s steps(3) infinite,
+    moveRight 6s linear infinite;
+}
+
+@keyframes walkCycle {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -288px 0;
+  } /* 96px * 3 */
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(110vw);
+  }
+}

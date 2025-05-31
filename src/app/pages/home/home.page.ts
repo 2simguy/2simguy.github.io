@@ -6,7 +6,6 @@ import { NgxTimelineEvent, NgxTimelineModule, NgxTimelineEventChangeSide } from 
 import {
   IonContent,
   IonList,
-  IonItem,
   IonCard,
   IonGrid,
   IonRow,
@@ -14,7 +13,20 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonCardTitle,
+  IonPopover,
+  IonAvatar,
+  IonText,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonCardHeader,
+  IonChip,
+  IonLabel,
 } from '@ionic/angular/standalone';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { LocationService } from 'src/app/services/location.service';
 
 interface TimeLineType {
   title: string;
@@ -28,6 +40,16 @@ interface TimeLineType {
   styleUrls: ['./home.page.scss'],
   standalone: true,
   imports: [
+    IonLabel,
+    IonChip,
+    IonCardHeader,
+    IonIcon,
+    IonButton,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
+    IonText,
+    IonAvatar,
     IonCardTitle,
     IonCardContent,
     IonCardSubtitle,
@@ -35,12 +57,13 @@ interface TimeLineType {
     IonRow,
     IonGrid,
     IonCard,
-    IonItem,
     IonList,
     IonContent,
     CommonModule,
     FormsModule,
     NgxTimelineModule,
+    HeaderComponent,
+    IonPopover,
   ],
 })
 export class HomePage implements OnInit {
@@ -81,7 +104,7 @@ export class HomePage implements OnInit {
     side: NgxTimelineEventChangeSide.ALL,
   };
 
-  constructor() {}
+  constructor(public locationService: LocationService) {}
 
   ngOnInit() {}
 }

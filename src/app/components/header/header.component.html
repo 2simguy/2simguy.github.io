@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Guy Simmons</ion-title>
+
+    <ion-chip slot="end" class="ion-hide-md-down" (click)="this.locationService.myLocation()">
+      <ion-icon name="location-outline"></ion-icon>
+      <ion-label>Table View, Cape Town</ion-label>
+    </ion-chip>
+
+    <ion-button
+      slot="end"
+      class="ion-hide-md-up ion-hide-sm-down"
+      fill="none"
+      (click)="this.locationService.myLocation()"
+    >
+      <ion-icon slot="icon-only" name="location-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button slot="end" class="ion-hide-sm-down" fill="none" href="tel:0845006678">
+      <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" class="ion-hide-sm-down" fill="none" href="mailto:simmonsguy10@gmail.com">
+      <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="none" href="https://github.com/2simguy" target="_blank">
+      <ion-icon slot="icon-only" name="logo-github"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="none" href="https://www.linkedin.com/in/guy-t-simmons" target="_blank">
+      <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
+    </ion-button>
+    <ion-button class="ion-hide-sm-up" id="popoverTrigger" slot="end" fill="none">
+      <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-popover id="popover" trigger="popoverTrigger" [cssClass]="'popover'">
+  <ng-template>
+    <ion-button slot="end" fill="none" (click)="this.locationService.myLocation()">
+      <ion-icon slot="icon-only" name="location-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="none" href="tel:0845006678">
+      <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="none" href="mailto:simmonsguy10@gmail.com">
+      <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+    </ion-button>
+  </ng-template>
+</ion-popover>

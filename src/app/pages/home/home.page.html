@@ -1,6 +1,83 @@
+<app-header></app-header>
+
 <ion-content>
   <!--Duck walking across the screen  -->
-  test
+  <div style="height: 100px">
+    <div class="duck"></div>
+  </div>
+
+  <!-- Profile Pic and Summary -->
+  <!-- <ion-card> -->
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" sizeSm="4">
+        <ion-avatar style="width: auto; height: auto; aspect-ratio: 1">
+          <img src="/profile-pic.jpg" alt="Guy Simmons" />
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="12" sizeSm="8" style="display: flex; flex-direction: column; justify-content: center">
+        <ion-card>
+          <ion-card-content>
+            <div>
+              <ion-icon name="location-outline"></ion-icon>
+              <ion-label> Table View, Cape Town</ion-label>
+            </div>
+            <div>
+              <ion-icon name="call-outline"></ion-icon>
+              0845006678
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-chip (click)="this.locationService.myLocation()">
+          <ion-icon name="location-outline"></ion-icon>
+          <ion-label>Table View, Cape Town</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="location-outline"></ion-icon>
+          <ion-label>Table View, Cape Town</ion-label>
+        </ion-chip>
+        <ion-button fill="none" href="tel:0845006678">
+          <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="none" href="mailto:simmonsguy10@gmail.com">
+          <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="none" href="https://github.com/2simguy" target="_blank">
+          <ion-icon slot="icon-only" name="logo-github"></ion-icon>
+        </ion-button>
+        <ion-button fill="none" href="https://www.linkedin.com/in/guy-t-simmons" target="_blank">
+          <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- </ion-card> -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>About me:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text style="margin: auto">
+        <p>
+          I have been with SmartMob for three years. I am currently serving as a Mid-Level Full Stack Software Developer
+          after a successful period as a Junior Developer specialising in web development. I have experience in
+          JavaScript and TypeScript for both front-end and back-end development, utilising frameworks and libraries such
+          as Angular, Ionic, Express, and Sequelize (MySQL). In addition, I use SQL to create custom queries, events,
+          and procedures for MySQL databases. My responsibilities include the development and support of major web
+          applications, including a warehouse management system and an event management platform with an integrated
+          store. I also help manage the deployment of front-end and back-end applications on Azure services like Azure
+          Blob Storage and Azure App Services. I earned my Bachelor of Engineering in Electronic Engineering in 2019,
+          with a final project that focused on developing software and building sensors for an unmanned ground vehicle.
+          I am eager to contribute to the development of high-quality and innovative applications while expanding my set
+          of skills and knowledge.
+        </p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <div></div>
 
   <!-- Time line -->
   <ngx-timeline
