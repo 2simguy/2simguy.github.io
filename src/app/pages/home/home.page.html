@@ -52,47 +52,48 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <!-- </ion-card> -->
+<!-- </ion-card> -->
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>About me:</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-text style="margin: auto">
-        <p>
-          I have been with SmartMob for three years. I am currently serving as a Mid-Level Full Stack Software Developer
-          after a successful period as a Junior Developer specialising in web development. I have experience in
-          JavaScript and TypeScript for both front-end and back-end development, utilising frameworks and libraries such
-          as Angular, Ionic, Express, and Sequelize (MySQL). In addition, I use SQL to create custom queries, events,
-          and procedures for MySQL databases. My responsibilities include the development and support of major web
-          applications, including a warehouse management system and an event management platform with an integrated
-          store. I also help manage the deployment of front-end and back-end applications on Azure services like Azure
-          Blob Storage and Azure App Services. I earned my Bachelor of Engineering in Electronic Engineering in 2019,
-          with a final project that focused on developing software and building sensors for an unmanned ground vehicle.
-          I am eager to contribute to the development of high-quality and innovative applications while expanding my set
-          of skills and knowledge.
-        </p>
-      </ion-text>
-    </ion-card-content>
-  </ion-card>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>About me:</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-text style="margin: auto">
+      <p>
+        I have been with SmartMob for three years. I am currently serving as a Mid-Level Full Stack Software Developer
+        after a successful period as a Junior Developer specialising in web development. I have experience in
+        JavaScript and TypeScript for both front-end and back-end development, utilising frameworks and libraries such
+        as Angular, Ionic, Express, and Sequelize (MySQL). In addition, I use SQL to create custom queries, events,
+        and procedures for MySQL databases. My responsibilities include the development and support of major web
+        applications, including a warehouse management system and an event management platform with an integrated
+        store. I also help manage the deployment of front-end and back-end applications on Azure services like Azure
+        Blob Storage and Azure App Services. I earned my Bachelor of Engineering in Electronic Engineering in 2019,
+        with a final project that focused on developing software and building sensors for an unmanned ground vehicle.
+        I am eager to contribute to the development of high-quality and innovative applications while expanding my set
+        of skills and knowledge.
+      </p>
+    </ion-text>
+  </ion-card-content>
+</ion-card>
 
-  <div></div>
+<div></div>
 
-  <!-- Time line -->
-  <ngx-timeline
-    [events]="timeLine"
-    [reverseOrder]="true"
-    [changeSide]="timeLineOptions.side"
-    [dateInstantCustomTemplate]="dateInstantCustomTemplate"
-  ></ngx-timeline>
-  <ng-template #dateInstantCustomTemplate let-item="item">
-    <!-- <span> {{item | json}} </span> -->
-  </ng-template>
+<!-- Time line -->
+<ngx-timeline
+  [events]="timeLine"
+  [reverseOrder]="true"
+  [changeSide]="timeLineOptions.side"
+  [dateInstantCustomTemplate]="dateInstantCustomTemplate"
+></ngx-timeline>
+<ng-template #dateInstantCustomTemplate let-item="item">
+  <!-- <span> {{item | json}} </span> -->
+</ng-template>
 
-  <!-- Create time line -->
-  <ion-grid class="ion-no-padding">
-    <ion-row *ngFor="let event of timeLine">
+<!-- Create time line -->
+<ion-grid class="ion-no-padding">
+  @for (event of timeLine; track event) {
+    <ion-row>
       <ion-col size="6" style="border-style: dashed; border-width: 0 2px 0 0">
         <ion-card>
           <ion-card-subtitle>{{ event.timestamp }}</ion-card-subtitle>
@@ -108,14 +109,17 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-list>
-    <ion-card *ngFor="let event of timeLine">
+  }
+</ion-grid>
+<ion-list>
+  @for (event of timeLine; track event) {
+    <ion-card>
       <div class="dot"></div>
       <div>
         <h2>{{ event.title }}</h2>
         <p>{{ event.timestamp }}</p>
       </div>
     </ion-card>
-  </ion-list>
+  }
+</ion-list>
 </ion-content>

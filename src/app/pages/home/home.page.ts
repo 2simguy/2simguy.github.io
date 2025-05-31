@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { NgxTimelineEvent, NgxTimelineModule, NgxTimelineEventChangeSide } from '@frxjs/ngx-timeline';
 
@@ -59,12 +59,11 @@ interface TimeLineType {
     IonCard,
     IonList,
     IonContent,
-    CommonModule,
     FormsModule,
     NgxTimelineModule,
     HeaderComponent,
-    IonPopover,
-  ],
+    IonPopover
+],
 })
 export class HomePage implements OnInit {
   timeLine: NgxTimelineEvent[] = [
