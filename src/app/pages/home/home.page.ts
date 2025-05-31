@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { NgxTimelineEvent, NgxTimelineModule, NgxTimelineEventChangeSide } from '@frxjs/ngx-timeline';
+// import { NgxTimelineEvent, NgxTimelineModule, NgxTimelineEventChangeSide } from '@frxjs/ngx-timeline';
 
 import {
   IonContent,
@@ -60,13 +60,13 @@ interface TimeLineType {
     IonList,
     IonContent,
     FormsModule,
-    NgxTimelineModule,
+    // NgxTimelineModule,
     HeaderComponent,
-    IonPopover
-],
+    IonPopover,
+  ],
 })
 export class HomePage implements OnInit {
-  timeLine: NgxTimelineEvent[] = [
+  timeLine = [
     {
       title: 'Electronic Engineering - University of Pretoria',
       description: 'Description 1',
@@ -98,10 +98,6 @@ export class HomePage implements OnInit {
       timestamp: new Date('2021'),
     },
   ];
-
-  timeLineOptions = {
-    side: NgxTimelineEventChangeSide.ALL,
-  };
 
   constructor(public locationService: LocationService) {}
 
