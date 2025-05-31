@@ -30,14 +30,19 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Setup Node.JS       
+      - name: Setup Node.JS
         uses: actions/setup-node@v4
         with:
           node-version: latest
-      - name: Install Packages     
+      - name: Install Packages
         run: npm ci
       - name: Build Angular Web App
         run: npm run build-prod
+
+      - name: Copy index.html to 404.html
+        working-directory: ./dist/www/browser
+        run: |
+          cp index.html 404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         id: deployment
