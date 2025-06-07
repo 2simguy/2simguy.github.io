@@ -2,57 +2,43 @@
 
 <ion-content>
   <!--Duck walking across the screen  -->
-  <div style="height: 100px">
+  <!-- <div style="height: 100px">
     <div class="duck"></div>
-  </div>
+  </div> -->
 
   <!-- Profile Pic and Summary -->
   <!-- <ion-card> -->
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12" sizeSm="4">
-        <ion-avatar style="width: auto; height: auto; aspect-ratio: 1">
+        <ion-avatar style="width: auto; height: auto; max-height: 250px; aspect-ratio: 1; margin: auto">
           <img src="/profile-pic.jpg" alt="Guy Simmons" />
         </ion-avatar>
       </ion-col>
       <ion-col size="12" sizeSm="8" style="display: flex; flex-direction: column; justify-content: center">
-        <ion-card>
-          <ion-card-content>
-            <div>
-              <ion-icon name="location-outline"></ion-icon>
-              <ion-label> Table View, Cape Town</ion-label>
-            </div>
-            <div>
-              <ion-icon name="call-outline"></ion-icon>
-              0845006678
-            </div>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-chip (click)="this.locationService.myLocation()">
+        <div class="chipStyle">
           <ion-icon name="location-outline"></ion-icon>
-          <ion-label>Table View, Cape Town</ion-label>
-        </ion-chip>
-        <ion-chip>
-          <ion-icon name="location-outline"></ion-icon>
-          <ion-label>Table View, Cape Town</ion-label>
-        </ion-chip>
-        <ion-button fill="none" href="tel:0845006678">
-          <ion-icon slot="icon-only" name="call-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="none" href="mailto:simmonsguy10@gmail.com">
-          <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="none" href="https://github.com/2simguy" target="_blank">
-          <ion-icon slot="icon-only" name="logo-github"></ion-icon>
-        </ion-button>
-        <ion-button fill="none" href="https://www.linkedin.com/in/guy-t-simmons" target="_blank">
-          <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
-        </ion-button>
+          <ion-label> Table View, Cape Town</ion-label>
+        </div>
+        <div class="chipStyle">
+          <ion-icon name="call-outline"></ion-icon>
+          <ion-label> 0845006678</ion-label>
+        </div>
+        <div class="chipStyle">
+          <ion-icon name="mail-outline"></ion-icon>
+          <ion-label> {{"simmonsguy10@gmail.com"}}</ion-label>
+        </div>
+        <div class="chipStyle">
+          <ion-icon name="logo-github"></ion-icon>
+          <ion-label><a href="https://github.com/2simguy">Github Profile</a> </ion-label>
+        </div>
+        <div class="chipStyle">
+          <ion-icon name="logo-linkedin"></ion-icon>
+          <ion-label><a href="https://www.linkedin.com/in/guy-t-simmons">LinkedIn Profile </a></ion-label>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <!-- </ion-card> -->
 
   <ion-card>
     <ion-card-header>
@@ -77,49 +63,50 @@
     </ion-card-content>
   </ion-card>
 
-  <div></div>
+  <h1 class="ion-padding">Projects</h1>
 
-  <!-- Time line -->
-  <!-- <ngx-timeline
-  [events]="timeLine"
-  [reverseOrder]="true"
-  [changeSide]="timeLineOptions.side"
-  [dateInstantCustomTemplate]="dateInstantCustomTemplate"
-></ngx-timeline> -->
-  <ng-template #dateInstantCustomTemplate let-item="item">
-    <!-- <span> {{item | json}} </span> -->
-  </ng-template>
-
-  <!-- Create time line -->
-  <ion-grid class="ion-no-padding">
-    @for (event of timeLine; track event) {
+  <ion-grid>
     <ion-row>
-      <ion-col size="6" style="border-style: dashed; border-width: 0 2px 0 0">
-        <ion-card>
-          <ion-card-subtitle>{{ event.timestamp }}</ion-card-subtitle>
-          <ion-card-title>{{ event.title }}</ion-card-title>
-          <ion-card-content> {{ event.description }} </ion-card-content>
+      @for(project of projects; track $index) {
+      <ion-col size="12" sizeSm="6" sizeXl="4">
+        <ion-card class="card-tweaks">
+          <ion-card-header>
+            <div class="project-header">
+              <ion-card-title>{{ project.title }}</ion-card-title>
+              <ion-text color="secondary">
+                {{project.startDate | date : 'MMM y'}} - {{project.endDate | date : 'MMM y'}}
+              </ion-text>
+            </div>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p [class.truncated]="!expandedProjects[$index]" class="project-description">{{ project.description }}</p>
+
+            @if(isDescriptionLong(project.description)) {
+            <ion-button fill="clear" size="small" (click)="toggleExpand($index)">
+              {{ expandedProjects[$index] ? 'Show less' : 'Show more' }}
+              <ion-icon slot="end" [name]="expandedProjects[$index] ? 'chevron-up' : 'chevron-down'"></ion-icon>
+            </ion-button>
+            }
+
+            <div class="tech-container">
+              @for(tech of project.technologiesUsed; track tech.title) {
+              <ion-chip color="tertiary" outline="true" (click)="openUrl(tech.url)">
+                <ion-label>{{ tech.title }}</ion-label>
+              </ion-chip>
+              }
+            </div>
+
+            @if(project.githubLink) {
+            <ion-button fill="clear" size="small" (click)="openUrl(project.githubLink)">
+              <ion-icon name="logo-github" slot="start"></ion-icon>
+              View on GitHub
+            </ion-button>
+            }
+          </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col size="6">
-        <ion-card>
-          <ion-card-subtitle>{{ event.timestamp }}</ion-card-subtitle>
-          <ion-card-title>{{ event.title }}</ion-card-title>
-          <ion-card-content> {{ event.description }} </ion-card-content>
-        </ion-card>
-      </ion-col>
+      }
     </ion-row>
-    }
   </ion-grid>
-  <ion-list>
-    @for (event of timeLine; track event) {
-    <ion-card>
-      <div class="dot"></div>
-      <div>
-        <h2>{{ event.title }}</h2>
-        <p>{{ event.timestamp }}</p>
-      </div>
-    </ion-card>
-    }
-  </ion-list>
 </ion-content>

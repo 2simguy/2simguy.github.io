@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,13 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'CV';
 
-  constructor() {}
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit() {
+    // Initialize the theme service to set up the theme based on system preference
+    this.themeService.themeSetup();
+  }
 }

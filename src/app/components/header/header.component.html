@@ -28,6 +28,14 @@
     <ion-button slot="end" fill="none" href="https://www.linkedin.com/in/guy-t-simmons" target="_blank">
       <ion-icon slot="icon-only" name="logo-linkedin"></ion-icon>
     </ion-button>
+    <ion-button
+      (click)="this.themeService.toggleDarkMode()"
+      slot="end"
+      fill="none"
+      [attr.aria-label]="this.themeService.isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      <ion-icon slot="icon-only" [name]="this.themeService.isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+    </ion-button>
     <ion-button class="ion-hide-sm-up" id="popoverTrigger" slot="end" fill="none">
       <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
     </ion-button>

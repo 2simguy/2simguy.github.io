@@ -6,24 +6,44 @@ import {
   IonLabel,
   IonChip,
   IonTitle,
-  IonAvatar,
   IonPopover,
-  IonContent,
   IonHeader,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { mailOutline, callOutline, logoGithub, logoLinkedin, locationOutline, menuOutline } from 'ionicons/icons';
+import {
+  mailOutline,
+  callOutline,
+  logoGithub,
+  logoLinkedin,
+  locationOutline,
+  menuOutline,
+  sunnyOutline,
+  moonOutline,
+} from 'ionicons/icons';
 import { LocationService } from 'src/app/services/location.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [IonHeader, IonContent, IonAvatar, IonPopover, IonTitle, IonChip, IonLabel, IonButton, IonIcon, IonToolbar],
+  imports: [IonHeader, IonPopover, IonTitle, IonChip, IonLabel, IonButton, IonIcon, IonToolbar],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public locationService: LocationService) {
-    addIcons({ mailOutline, callOutline, logoGithub, logoLinkedin, locationOutline, menuOutline });
+  constructor(
+    public locationService: LocationService,
+    public themeService: ThemeService,
+  ) {
+    addIcons({
+      mailOutline,
+      callOutline,
+      logoGithub,
+      logoLinkedin,
+      locationOutline,
+      menuOutline,
+      sunnyOutline,
+      moonOutline,
+    });
   }
 
   ngOnInit() {}
