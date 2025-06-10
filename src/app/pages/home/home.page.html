@@ -40,18 +40,16 @@
     </ion-row>
   </ion-grid>
 
+  <h1 class="ion-padding">About me</h1>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>About me:</ion-card-title>
-    </ion-card-header>
     <ion-card-content>
       <ion-text style="margin: auto">
         <p>
-          I have been with SmartMob for three years. I am currently serving as a Mid-Level Full Stack Software Developer
+          I have been with SmartMob for four years. I am currently serving as a Mid-Level Full Stack Software Developer
           after a successful period as a Junior Developer specialising in web development. I have experience in
           JavaScript and TypeScript for both front-end and back-end development, utilising frameworks and libraries such
           as Angular, Ionic, Express, and Sequelize (MySQL). In addition, I use SQL to create custom queries, events,
-          and procedures for MySQL databases. My responsibilities include the development and support of major web
+          and procedures for MySQL databases. My responsibilities include the development and support of web
           applications, including a warehouse management system and an event management platform with an integrated
           store. I also help manage the deployment of front-end and back-end applications on Azure services like Azure
           Blob Storage and Azure App Services. I earned my Bachelor of Engineering in Electronic Engineering in 2019,
@@ -63,18 +61,33 @@
     </ion-card-content>
   </ion-card>
 
+  <!-- Skills -->
+  <h1 class="ion-padding">Skills</h1>
+  <ion-card>
+    <ion-card-content>
+      @for (item of skills; track $index) {
+      <ion-chip class="skill-chip" outline="true" style="cursor: unset">
+        <ion-icon [name]="item.icon" slot="start"></ion-icon>
+        <ion-label>{{ item.title }}</ion-label>
+      </ion-chip>
+      }
+    </ion-card-content>
+  </ion-card>
+
   <h1 class="ion-padding">Projects</h1>
 
+  <!-- Projects -->
   <ion-grid>
     <ion-row>
       @for(project of projects; track $index) {
-      <ion-col size="12" sizeSm="6" sizeXl="4">
+      <ion-col size="12" sizeMd="6" sizeXl="4" style="display: flex">
         <ion-card class="card-tweaks">
           <ion-card-header>
             <div class="project-header">
               <ion-card-title>{{ project.title }}</ion-card-title>
               <ion-text color="secondary">
-                {{project.startDate | date : 'MMM y'}} - {{project.endDate | date : 'MMM y'}}
+                {{project.startDate | date : 'y'}} - {{project.endDate==='Current'?
+                project.endDate:project.endDate|date: 'y' }}
               </ion-text>
             </div>
           </ion-card-header>
@@ -82,12 +95,19 @@
           <ion-card-content>
             <p [class.truncated]="!expandedProjects[$index]" class="project-description">{{ project.description }}</p>
 
-            @if(isDescriptionLong(project.description)) {
-            <ion-button fill="clear" size="small" (click)="toggleExpand($index)">
-              {{ expandedProjects[$index] ? 'Show less' : 'Show more' }}
-              <ion-icon slot="end" [name]="expandedProjects[$index] ? 'chevron-up' : 'chevron-down'"></ion-icon>
-            </ion-button>
-            }
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              @if(isDescriptionLong(project.description)) {
+              <ion-button fill="clear" size="small" (click)="toggleExpand($index)">
+                {{ expandedProjects[$index] ? 'Show less' : 'Show more' }}
+                <ion-icon slot="end" [name]="expandedProjects[$index] ? 'chevron-up' : 'chevron-down'"></ion-icon>
+              </ion-button>
+              } @if(project.githubLink) {
+              <ion-button fill="clear" size="small" (click)="openUrl(project.githubLink)">
+                <ion-icon name="logo-github" slot="start"></ion-icon>
+                View on GitHub
+              </ion-button>
+              }
+            </div>
 
             <div class="tech-container">
               @for(tech of project.technologiesUsed; track tech.title) {
@@ -96,17 +116,112 @@
               </ion-chip>
               }
             </div>
-
-            @if(project.githubLink) {
-            <ion-button fill="clear" size="small" (click)="openUrl(project.githubLink)">
-              <ion-icon name="logo-github" slot="start"></ion-icon>
-              View on GitHub
-            </ion-button>
-            }
           </ion-card-content>
         </ion-card>
       </ion-col>
       }
     </ion-row>
   </ion-grid>
+
+  <!-- Timeline -->
+  <h1 class="ion-padding">Timeline</h1>
+  @for (item of timeLine; track $index) {
+  <ion-card>
+    <ion-card-content>
+      <div class="timeline-label">
+        <div class="timeline-topBar">
+          <h1>{{item.title}}</h1>
+          <h2 class="timeline-date">
+            {{item.startDate|date: 'y' }} - {{item.endDate==='Current'? item.endDate:item.endDate|date: 'y' }}
+          </h2>
+        </div>
+
+        <h4 class="timeline-company">{{item.company}}</h4>
+        <p>{{item.description}}</p>
+        <ion-list>
+          @for (point of item.information; track $index) {
+          <ion-item lines="none">
+            <ion-icon
+              [name]="point.icon??'checkmark-circle-outline'"
+              slot="start"
+              [color]="point.color ?? 'success'"
+            ></ion-icon>
+            <ion-label>{{point.text}}</ion-label>
+          </ion-item>
+          }
+        </ion-list>
+      </div>
+    </ion-card-content> </ion-card
+  >}
 </ion-content>
+
+<!-- 
+ <div class="timeline-container">
+    <h1 class="ion-padding">Timeline</h1>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date2"><span>May 2021</span> - <span>Current</span></div>
+        <div class="timeline-content">
+          <h3>Full Stack Software Developer</h3>
+          <h4>Smart Mob</h4>
+          <p>Hybrid application development.</p>
+          <ul>
+            <li>Achieved promotion from Junior Developer to Mid-Level Full Stack Developer within 1.5 years.</li>
+            <li>Received an associate director position in the company in 2023.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date2"><span>2020</span> - <span>2021</span></div>
+        <div class="timeline-content">
+          <h3>Family Business</h3>
+          <p>Worked at a family business involved in mining and a game ranch during COVID lockdown in Zimbabwe.</p>
+          <ul>
+            <li>IT infrastructure setup for the office.</li>
+            <li>Renewable energy and power backup installations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date2"><span>2013</span> - <span>2019</span></div>
+        <div class="timeline-content">
+          <h3>Bachelor of Engineering (Electronic Engineering)</h3>
+          <h4>University of Pretoria</h4>
+          <p>Final Year Project:</p>
+          <ul>
+            <li>
+              Developed an unmanned ground vehicle capable of driving to a GPS location while avoiding obstacles using
+              ultrasonic distance sensors.
+            </li>
+            <li>Implemented wireless power transfer from first principles.</li>
+            <li>Designed ultrasonic distance sensors and worked with STM32 Microcontroller (C).</li>
+            <li>Integrated GPS and ESP WiFi module.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date2"><span>2008</span> - <span>2012</span></div>
+        <div class="timeline-content">
+          <h3>High School (IEB)</h3>
+          <h4>Treverton College</h4>
+          <p>Achievements:</p>
+          <ul>
+            <li>Half colours.</li>
+            <li>School prefect and boarding house prefect.</li>
+            <li>Headmaster’s Award.</li>
+          </ul>
+          <p>Marks:</p>
+          <ul>
+            <li>Mathematics: 83%</li>
+            <li>Physical Sciences: 79%</li>
+            <li>Biology: 75%</li>
+            <li>Business Studies: 66%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
